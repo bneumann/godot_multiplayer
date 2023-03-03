@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgqqs68byb3wh"]
+
+[ext_resource type="Script" path="res://Multiplayer.cs" id="1_o35rt"]
+
+[node name="Multiplayer" type="Node"]
+script = ExtResource("1_o35rt")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 37.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="Net" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Options" type="HBoxContainer" parent="UI/Net"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="UI/Net/Options"]
+layout_mode = 2
+text = "Direct:"
+
+[node name="Host" type="Button" parent="UI/Net/Options"]
+layout_mode = 2
+text = "Host"
+
+[node name="Connect" type="Button" parent="UI/Net/Options"]
+layout_mode = 2
+text = "Connect"
+
+[node name="Remote" type="LineEdit" parent="UI/Net/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "127.0.0.1"
+
+[connection signal="pressed" from="UI/Net/Options/Host" to="." method="OnHostPressed"]
+[connection signal="pressed" from="UI/Net/Options/Connect" to="." method="OnConnectPressed"]

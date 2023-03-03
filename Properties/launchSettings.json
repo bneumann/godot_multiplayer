@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Tutorial": {
+      "commandName": "Project"
+    },
+    "Godot Debug": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\Godot\\Godot_v4.0-stable_mono_win64.exe",
+      "commandLineArgs": "--path . --verbose",
+      "workingDirectory": ".",
+      "nativeDebugging": true
+    }
+  }
+}

@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://ca3m1137ndqy2"]
+
+[ext_resource type="Script" path="res://Player.cs" id="1_tuo63"]
+[ext_resource type="Script" path="res://PlayerInput.cs" id="2_odxtm"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2g8pt"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:id")
+properties/1/spawn = true
+properties/1/sync = false
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wkx84"]
+properties/0/path = NodePath(".:direction")
+properties/0/spawn = false
+properties/0/sync = true
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_lcngo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wow7r"]
+size = Vector2(40, 40)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_tuo63")
+metadata/_edit_group_ = true
+
+[node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_2g8pt")
+
+[node name="PlayerInput" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath(".")
+replication_config = SubResource("SceneReplicationConfig_wkx84")
+script = ExtResource("2_odxtm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(20, 20)
+scale = Vector2(40, 40)
+texture = SubResource("CanvasTexture_lcngo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_wow7r")

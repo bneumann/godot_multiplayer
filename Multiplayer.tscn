@@ -1,9 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgqqs68byb3wh"]
+[gd_scene load_steps=2 format=3 uid="uid://b7oqafyqjhwg2"]
 
 [ext_resource type="Script" path="res://Multiplayer.cs" id="1_o35rt"]
 
 [node name="Multiplayer" type="Node"]
 script = ExtResource("1_o35rt")
+
+[node name="Level" type="Node" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Level.tscn")
+spawn_path = NodePath("../Level")
+spawn_limit = 1
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

@@ -7,17 +7,18 @@ public partial class Multiplayer : Node
 	private const int Port = 4433;
 	private Control Ui => GetNode<Control>("UI");
 	private Control RemoteAddressField => GetNode<LineEdit>("UI/Net/Options/Remote");
+	private Node Level => GetNode<Node>("Level");
 
 	public override void _Ready()
 	{
 		// https://godotengine.org/article/multiplayer-in-godot-4-0-scene-replication/
 		// The article sets the state to paused which causes the callbacks to not being called!
-
 		//GetTree().Paused = true;
+
 		Multiplayer.Set("server_relay", false);
 
 		if (DisplayServer.GetName() == "headless")
-			OnConnectPressed();		
+			CallDeferred(nameof(OnConnectPressed));
 	}
 
 	public void OnHostPressed()
@@ -59,5 +60,24 @@ public partial class Multiplayer : Node
 	{
 		Ui.Hide();
 		GetTree().Paused = false;
+
+		if (Multiplayer.IsServer())
+			CallDeferred(nameof(ChangeLevel), ResourceLoader.Load("res://Level.tscn"));
+	}
+
+	private void ChangeLevel(PackedScene scene)
+	{
+		Trace.WriteLine("Calling ChangeLevel");
+		RemoveOldLevel();
+		Level.AddChild(scene.Instantiate());
+	}
+
+	private void RemoveOldLevel()
+	{
+		foreach (var child in Level.GetChildren())
+		{
+			Level.RemoveChild(child);
+			child.QueueFree();
+		}
 	}
 }

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxmgsf3of4kvl"]
+
+[ext_resource type="Script" path="res://Level.cs" id="1_nitnh"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_nitnh")
+metadata/_edit_group_ = true
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Player.tscn")
+spawn_path = NodePath("../Players")
+spawn_limit = 4

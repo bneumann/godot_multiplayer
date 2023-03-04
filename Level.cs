@@ -1,7 +1,5 @@
 using Godot;
-using System;
 using System.Diagnostics;
-using System.Linq;
 
 public partial class Level : Node2D
 {
@@ -51,7 +49,7 @@ public partial class Level : Node2D
 			return;
 		}
 		Trace.WriteLine($"Adding player {id}");
-		character.id = id;
+		character.Id = id;
 		character.Position = GetViewportRect().Size * GD.Randf();
 		character.Name = GetNameFromId(id);
 		Players.AddChild(character, true);

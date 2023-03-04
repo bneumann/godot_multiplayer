@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using System.Diagnostics;
 
 public partial class Multiplayer : Node
@@ -14,6 +13,8 @@ public partial class Multiplayer : Node
 		// https://godotengine.org/article/multiplayer-in-godot-4-0-scene-replication/
 		// The article sets the state to paused which causes the callbacks to not being called!
 		//GetTree().Paused = true;
+
+		
 
 		Multiplayer.Set("server_relay", false);
 

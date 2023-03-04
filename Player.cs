@@ -14,7 +14,7 @@ public partial class Player : CharacterBody2D
 	public int Speed = 400;
 
 	[Export]
-	public long id
+	public long Id
 	{
 		get => internalId;
 		set
@@ -26,7 +26,7 @@ public partial class Player : CharacterBody2D
 
 	public override void _Ready()
 	{
-		if (id == Multiplayer.GetUniqueId())
+		if (Id == Multiplayer.GetUniqueId())
 			Trace.WriteLine("We are a local player");
 	}
 
